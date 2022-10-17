@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface GithubCard {
+        "data": any;
         "user": string;
     }
     interface SearchForm {
@@ -32,6 +33,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface GithubCard {
+        "data"?: any;
         "user": string;
     }
     interface SearchForm {

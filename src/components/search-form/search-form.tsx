@@ -11,8 +11,10 @@ export class SearchForm {
   @State() unsplash: undefined;
   @State() dataItemes: any;
   @State() data: any;
+
   @Listen('click', { capture: true })
   handleSubmit(e: Event) {
+    this.textInput;
     e.preventDefault();
     if (this.textInput.value) {
       fetch(`https://api.unsplash.com/photos/random?client_id=WFIItShK2zGqiAWndKEU35X2wg4Bg1ZMZhGWZi2MQ-A`)
