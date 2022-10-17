@@ -6,10 +6,19 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface GithubCard {
+        "user": any;
+    }
     interface SearchForm {
     }
 }
 declare global {
+    interface HTMLGithubCardElement extends Components.GithubCard, HTMLStencilElement {
+    }
+    var HTMLGithubCardElement: {
+        prototype: HTMLGithubCardElement;
+        new (): HTMLGithubCardElement;
+    };
     interface HTMLSearchFormElement extends Components.SearchForm, HTMLStencilElement {
     }
     var HTMLSearchFormElement: {
@@ -17,13 +26,18 @@ declare global {
         new (): HTMLSearchFormElement;
     };
     interface HTMLElementTagNameMap {
+        "github-card": HTMLGithubCardElement;
         "search-form": HTMLSearchFormElement;
     }
 }
 declare namespace LocalJSX {
+    interface GithubCard {
+        "user"?: any;
+    }
     interface SearchForm {
     }
     interface IntrinsicElements {
+        "github-card": GithubCard;
         "search-form": SearchForm;
     }
 }
@@ -31,6 +45,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "github-card": LocalJSX.GithubCard & JSXBase.HTMLAttributes<HTMLGithubCardElement>;
             "search-form": LocalJSX.SearchForm & JSXBase.HTMLAttributes<HTMLSearchFormElement>;
         }
     }

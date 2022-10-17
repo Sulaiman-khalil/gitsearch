@@ -51,7 +51,8 @@ export class SearchForm {
             fetch&&search
           </button>
         </form>
-        {this.data && (
+        <github-card user={this.data}></github-card>
+        {/* {this.data && (
           <div class="all">
             <div class="myimage">
               <img class="back" src={this.unsplash}></img>
@@ -81,7 +82,7 @@ export class SearchForm {
               </ul>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     );
   }
