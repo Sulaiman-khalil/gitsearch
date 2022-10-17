@@ -7,49 +7,23 @@ import { Component, h, Listen, State } from '@stencil/core';
   shadow: true,
 })
 export class SearchForm {
-  textInput!: HTMLInputElement;
+  @State() textInput!: HTMLInputElement;
   @State() unsplash: undefined;
   @State() dataItemes: any;
   @State() data: any;
 
   @Listen('click', { capture: true })
   handleSubmit(e: Event) {
-    this.textInput;
     e.preventDefault();
-    if (this.textInput.value) {
-      fetch(`https://api.unsplash.com/photos/random?client_id=WFIItShK2zGqiAWndKEU35X2wg4Bg1ZMZhGWZi2MQ-A`)
-        .then(data => data.json())
-        .then(res => {
-          this.unsplash = res.urls.regular;
-          console.log('this.unspalsh :>> ', this.unsplash);
-        });
-    }
+
+    fetch(`https://api.unsplash.com/photos/random?client_id=zTlsfycuk6GJWIyc7rnOmFIwqYjXoBMyz2UQe7QEH8A`)
+      .then(data => data.json())
+      .then(res => {
+        this.unsplash = res.urls.regular;
+        console.log('this.unspalsh :>> ', this.unsplash);
+      });
 
     console.log('button clicked');
-    // if (this.textInput.value) {
-    //   fetch(`https://api.github.com/users/${this.textInput.value}`)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       this.data = data;
-    //       this.dataItemes = this.data.items;
-    //       this.textInput.value = '';
-    //       // this.dataItemes.map(el => {
-    //       //   el.followers_url;
-    //       // });
-
-    //       console.log(this.data);
-    //       console.log(this.dataItemes);
-
-    //       console.log(this.textInput.value);
-    //     });
-
-    //   fetch(`https://api.unsplash.com/photos/random?client_id=2uWJrmFfw3MMhjhSe3924de_PWPYIKGVhV4vnzXOACo`)
-    //     .then(data => data.json())
-    //     .then(res => {
-    //       this.unsplash = res.urls.regular;
-    //       console.log('this.unspalsh :>> ', this.unsplash);
-    //     });
-    // }
   }
 
   render() {

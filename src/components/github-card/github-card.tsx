@@ -1,4 +1,4 @@
-import { Component, Host, h, Listen, State, Prop } from '@stencil/core';
+import { Component, Host, h, Listen, State, Prop, Watch } from '@stencil/core';
 // import { Api } from '../api';
 
 @Component({
@@ -7,26 +7,15 @@ import { Component, Host, h, Listen, State, Prop } from '@stencil/core';
   shadow: true,
 })
 export class GithubCard {
-  @Prop() user!: string;
-
   @Prop() data: any;
+  @Prop() user!: string;
+  @Watch('user')
   async componentWillLoad() {
     const res = await fetch(`https://api.github.com/users/${this.user}`);
     const data = await res.json();
     this.data = data;
 
-    // this.dataItemes = this.data.items;
-    // this.textInput.value = '';
-    // this.dataItemes.map(el => {
-    //   el.followers_url;
-    // });
     console.log(this.data);
-
-    //   fetch('/some-data.json')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     this.content = data;
-    //   });
   }
   render() {
     return (
