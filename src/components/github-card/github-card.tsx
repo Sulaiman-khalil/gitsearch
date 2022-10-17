@@ -6,14 +6,14 @@ import { Component, Host, h, Listen, State, Prop } from '@stencil/core';
   styleUrl: 'github-card.css',
   shadow: true,
 })
-export class SearchForm {
-  textInput: HTMLInputElement;
-  @Prop() user: any;
+export class GithubCard {
+  @Prop() user!: string;
 
   render() {
     return (
       <div class="all-all">
-        {this.user && (
+        <h1>this input is :{this.user}</h1>
+        {/* {this.user && (
           <div class="all">
             <div class="myimage">
               <img class="profil" src={this.user.avatar_url}></img>
@@ -42,7 +42,7 @@ export class SearchForm {
               </ul>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     );
   }

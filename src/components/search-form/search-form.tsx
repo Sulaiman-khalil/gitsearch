@@ -1,4 +1,4 @@
-import { Component, Host, h, Listen, State } from '@stencil/core';
+import { Component, h, Listen, State } from '@stencil/core';
 // import { Api } from '../api';
 
 @Component({
@@ -7,39 +7,47 @@ import { Component, Host, h, Listen, State } from '@stencil/core';
   shadow: true,
 })
 export class SearchForm {
-  textInput: HTMLInputElement;
-
-  @State() unsplash: string;
+  textInput!: HTMLInputElement;
+  @State() unsplash: undefined;
   @State() dataItemes: any;
   @State() data: any;
   @Listen('click', { capture: true })
   handleSubmit(e: Event) {
     e.preventDefault();
-    console.log('button clicked');
     if (this.textInput.value) {
-      fetch(`https://api.github.com/users/${this.textInput.value}`)
-        .then(res => res.json())
-        .then(data => {
-          this.data = data;
-          this.dataItemes = this.data.items;
-          this.textInput.value = null;
-          // this.dataItemes.map(el => {
-          //   el.followers_url;
-          // });
-
-          console.log(this.data);
-          console.log(this.dataItemes);
-
-          console.log(this.textInput.value);
-        });
-
-      fetch(`https://api.unsplash.com/photos/random?client_id=2uWJrmFfw3MMhjhSe3924de_PWPYIKGVhV4vnzXOACo`)
+      fetch(`https://api.unsplash.com/photos/random?client_id=WFIItShK2zGqiAWndKEU35X2wg4Bg1ZMZhGWZi2MQ-A`)
         .then(data => data.json())
         .then(res => {
           this.unsplash = res.urls.regular;
           console.log('this.unspalsh :>> ', this.unsplash);
         });
     }
+
+    console.log('button clicked');
+    // if (this.textInput.value) {
+    //   fetch(`https://api.github.com/users/${this.textInput.value}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       this.data = data;
+    //       this.dataItemes = this.data.items;
+    //       this.textInput.value = '';
+    //       // this.dataItemes.map(el => {
+    //       //   el.followers_url;
+    //       // });
+
+    //       console.log(this.data);
+    //       console.log(this.dataItemes);
+
+    //       console.log(this.textInput.value);
+    //     });
+
+    //   fetch(`https://api.unsplash.com/photos/random?client_id=2uWJrmFfw3MMhjhSe3924de_PWPYIKGVhV4vnzXOACo`)
+    //     .then(data => data.json())
+    //     .then(res => {
+    //       this.unsplash = res.urls.regular;
+    //       console.log('this.unspalsh :>> ', this.unsplash);
+    //     });
+    // }
   }
 
   render() {
@@ -51,11 +59,19 @@ export class SearchForm {
             fetch&&search
           </button>
         </form>
-        <github-card user={this.data}></github-card>
+        {this.unsplash && (
+          <div>
+            <img class="back" src={this.unsplash}></img>
+            <github-card user={this.textInput.value}></github-card>
+          </div>
+        )}
+
+        {/* <github-card user={this.textInput.value}></github-card> */}
+        {/* <github-card user={this.textInput.value}></github-card> */}
         {/* {this.data && (
           <div class="all">
             <div class="myimage">
-              <img class="back" src={this.unsplash}></img>
+            
               <img class="profil" src={this.data.avatar_url}></img>
             </div>
             <div class="name">
